@@ -109,3 +109,43 @@ def hit_or_stand(deck,hand):
             continue
             
         break
+
+def show_some(player,dealer):
+    
+    print("DEALER'S HAND:")
+    print('one card hidden!')
+    print(dealer.cards[1])#only shows the second card dealt to dealer
+    print('\n')
+    print("PLAYER'S HAND")
+    for card in player.cards:
+        print(card)#obviously you should see all of your cards
+    
+def show_all(player,dealer):#shows all cards
+    print("DEALER'S HAND:")
+    for card in dealer.cards:
+        print(card)
+    print('\n')
+    print("PLAYER'S HAND:")
+    for card in player.cards:
+        print(card)
+
+#Below are the different outcomes per game
+
+def player_busts(player, dealer, chips):
+    print ("PLAYER BUSTS!")
+    chips.lose_bet()
+    
+def player_wins(player, dealer, chips):
+    print ("PLAYER WINS!")
+    chips.win_bet()
+    
+def dealer_busts(player, dealer, chips):
+    print ("PLAYER WINS! DEALER BUSTS!")
+    chips.win_bet()
+    
+def dealer_wins(player, dealer, chips):
+    print ("DEALER WINS! PLAYER BUSTS")
+    chips.lose_bet()
+    
+def push(player, dealer):
+    print ('Dealer and Player TIE! PUSH!')
