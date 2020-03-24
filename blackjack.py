@@ -77,12 +77,16 @@ class Chips:
     def lose_bet(self): #loses the bet, subtract the bet from the total
         self.total -= self.bet
 
-test_deck = Deck()
-test_deck.shuffle()
-#player
-test_player = Hand()
-#deal 1 card from the deck CARD(suit,rank)
-pulled_card = test_deck.deal()
-print(pulled_card)
-test_player.add_card(pulled_card)
-print(test_player.value)
+def take_bet(chips):
+    
+    while True:
+        #logic/loop to prevent someone from making non-number bet, or betting more than they have left
+        try:
+            chips.bet = int(input("How many chips do you want to bet: "))
+        except:
+            print("Sorry, put in a number")
+        else:
+            if chips.bet > chips.total:
+                print(f"Sorry, you don't have enough chips! You have {chips.total} chips left")
+            else:
+                break
