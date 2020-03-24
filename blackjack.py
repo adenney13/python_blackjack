@@ -90,3 +90,22 @@ def take_bet(chips):
                 print(f"Sorry, you don't have enough chips! You have {chips.total} chips left")
             else:
                 break
+
+def hit_or_stand(deck,hand):
+    global playing  # to control an upcoming while loop
+    
+    while True:
+        x = input('Hit or stand? Enter h or s: ')
+        
+        if x[0].lower() == 'h': #if they want to hit
+            hit(deck,hand) #call hit function
+            
+        elif x[0].lower() == 's':
+            print ("Player Stands, Dealer's Turn")
+            playing = False
+            
+        else:
+            print("Sorry, choose 'h' or 's' only!")
+            continue
+            
+        break
