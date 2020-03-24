@@ -23,9 +23,9 @@ class Deck:
     
     def __init__(self):
         self.deck = []  #start with empty deck
-        for suit in suits:
-            for rank in ranks: #these three cycle through every rank for every suit then appends/adds a new Card() to the empty deck above
-                self.deck.append(Card(suit,rank))
+        for suit in suits: #for every suit...
+            for rank in ranks: #go through every rank and...
+                self.deck.append(Card(suit,rank))#using the Card class, append and fill the self.deck with the ranks of every suit
     
     def __str__(self):
         the_deck = '' #stringify the deck
@@ -40,5 +40,37 @@ class Deck:
         single_card = self.deck.pop() #pops off the last card in the shuffled deck, sets it to single_card variable
         return single_card
 
+class Hand:
+    def __init__(self):
+        self.cards = []  # start with an empty list as we did in the Deck class
+        self.value = 0   # start with zero value
+        self.aces = 0    # add an attribute to keep track of aces
+    
+    def add_card(self,card):#take in a "card" object
+        #"card" is passed in
+        #from class/method above, Deck.deal().... single Card(suit,rank)class instance
+        self.cards.append(card) #add 'card' object grabbed to the self.cards list
+        self.value += values[card.rank] #matching card rank with value from values dict...adjusting value to card just added to list self.cards
+    
+        #track aces
+        
+        if card.rank == 'Ace':
+            self.aces += 1
+        
+    def adjust_for_ace(self):
+        
+        #if my total value is > 21, AND i still have an ace
+        #change my ace to be a 1 instead of 11
+        while self.value > 21 and self.aces: #self.aces ... truthyness... 0 value, will be treated as False, and a value is treated as True. BOOLEAN
+            self.value -= 10
+            self.aces -= 1
+
 test_deck = Deck()
-print(test_deck)
+test_deck.shuffle()
+#player
+test_player = Hand()
+#deal 1 card from the deck CARD(suit,rank)
+pulled_card = test_deck.deal()
+print(pulled_card)
+test_player.add_card(pulled_card)
+print(test_player.value)
