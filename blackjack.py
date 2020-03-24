@@ -65,6 +65,18 @@ class Hand:
             self.value -= 10
             self.aces -= 1
 
+class Chips:
+    
+    def __init__(self):
+        self.total = 100  # This can be set to a default value or supplied by a user input by passing argument (self, total=100)
+        self.bet = 0
+        
+    def win_bet(self): #wins the bet, add the bet to the total
+        self.total += self.bet
+    
+    def lose_bet(self): #loses the bet, subtract the bet from the total
+        self.total -= self.bet
+
 test_deck = Deck()
 test_deck.shuffle()
 #player
